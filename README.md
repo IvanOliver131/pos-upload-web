@@ -5,3 +5,4 @@ npx tailwindcss init -p
 npm install lucide-react
 npm install tailwind-variants
 npm install @radix-ui/react-collapsible
+npm install react-dropzone
