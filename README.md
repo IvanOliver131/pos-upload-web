@@ -7,3 +7,4 @@ npm install tailwind-variants
 npm install @radix-ui/react-collapsible
 npm install react-dropzone
 npm install @radix-ui/react-progress
+npm install motion
