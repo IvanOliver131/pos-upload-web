@@ -10,3 +10,4 @@ npm install @radix-ui/react-progress
 npm install motion
 npm install zustand
 npm install immer
+npm install axios
