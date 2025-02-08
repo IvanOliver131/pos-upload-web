@@ -1,11 +1,12 @@
 import * as Progress from "@radix-ui/react-progress";
 
-import { Download, ImageUp, Link2, RefreshCcw, Upload, X } from "lucide-react";
+import { Download, ImageUp, Link2, RefreshCcw, X } from "lucide-react";
 import { Button } from "./ui/button";
 
 import { motion } from "motion/react";
 import { UploadStatus, useUploads, type Upload } from "../store/uploads";
 import { formatBytes } from "../utils/format-bytes";
+import React, { ReactNode } from "react";
 
 interface UploadWidgetUploadItemProps {
   upload: Upload;
@@ -17,6 +18,25 @@ export function UploadWidgetUploadItem({
   uploadId,
 }: UploadWidgetUploadItemProps) {
   const cancelUpload = useUploads((store) => store.cancelUpload);
+
+  const renderUploadStatusInfo = (uploadStatus: UploadStatus) => {
+    switch (uploadStatus) {
+      case UploadStatus.SUCCESS:
+        return <span>100%</span>;
+
+      case UploadStatus.PROGRESS:
+        return <span>45%</span>;
+
+      case UploadStatus.ERROR:
+        return <span className="text-red-400">Error</span>;
+
+      case UploadStatus.CANCELED:
+        return <span className="text-yellow-400">Canceled</span>;
+
+      default:
+        return <span className="text-red-400">Error</span>;
+    }
+  };
 
   return (
     <motion.div
@@ -43,14 +63,7 @@ export function UploadWidgetUploadItem({
         </span>
         <div className="size-1 rounded-full bg-zinc-700" />
 
-        {upload.status === UploadStatus.SUCCESS && <span>100%</span>}
-        {upload.status === UploadStatus.PROGRESS && <span>45%</span>}
-        {upload.status === UploadStatus.ERROR && (
-          <span className="text-red-400">Error</span>
-        )}
-        {upload.status === UploadStatus.CANCELED && (
-          <span className="text-yellow-400">Canceled</span>
-        )}
+        {renderUploadStatusInfo(upload.status)}
       </div>
 
       <Progress.Root
