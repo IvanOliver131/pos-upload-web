@@ -11,3 +11,5 @@ npm install motion
 npm install zustand
 npm install immer
 npm install axios
+npm install @radix-ui/react-slot
+npm install @radix-ui/react-scroll-area

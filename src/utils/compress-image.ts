@@ -45,14 +45,14 @@ export function compressImage({
         if (width > height) {
           if (width > maxWidth) {
             // Fazemos isso para deixar a imagem proporcional
-            width = maxWidth;
             height *= maxWidth / width;
+            width = maxWidth;
           }
         } else {
           if (height > maxHeight) {
             // Fazemos isso para deixar a imagem proporcional
-            height = maxHeight;
             width *= maxHeight / height;
+            height = maxHeight;
           }
         }
 
