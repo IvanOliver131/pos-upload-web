@@ -110,21 +110,16 @@ export function UploadWidgetUploadItem({
 
       <div className="absolute top-2 right-2 flex items-center gap-1">
         <Button
-          aria-disabled={upload.status !== UploadStatus.SUCCESS}
           size="icon-sm"
-          asChild
+          aria-disabled={!upload.remoteUrl}
+          onClick={() => {
+            if (upload.remoteUrl) {
+              downloadUrl(upload.remoteUrl);
+            }
+          }}
         >
-          <a
-            href={upload.remoteUrl}
-            onClick={() => {
-              if (upload.remoteUrl) {
-                downloadUrl(upload.remoteUrl);
-              }
-            }}
-          >
-            <Download className="size-4" strokeWidth={1.5} />
-            <span className="sr-only">Download compressed image</span>
-          </a>
+          <Download className="size-4" strokeWidth={1.5} />
+          <span className="sr-only">Download compressed image</span>
         </Button>
 
         <Button
